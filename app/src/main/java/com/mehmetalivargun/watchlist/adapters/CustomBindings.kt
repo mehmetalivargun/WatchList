@@ -10,6 +10,8 @@ import com.mehmetalivargun.watchlist.data.response.GenreMovies
 import com.mehmetalivargun.watchlist.data.response.Result
 
 val genreAdapter=GenreRVAdapter()
+val relatedProductAdapter=RelatedProductAdapter()
+val movieAdapter=MovieAdapter()
 @BindingAdapter("app:genres")
 fun RecyclerView.genres(genres: List<GenreMovies>?) {
     if (adapter != genreAdapter) {
@@ -31,7 +33,8 @@ fun RecyclerView.setMovies(books: List<Result>?) {
     }
 }
 
-@BindingAdapter("app:imageUrl")
+
+    @BindingAdapter("app:imageUrl")
 fun ImageView.imageUrl(imageUrl: String?) {
     val image= "https://image.tmdb.org/t/p/w500/$imageUrl"
     image?.let {
@@ -39,4 +42,22 @@ fun ImageView.imageUrl(imageUrl: String?) {
             .load(it)
             .into(this)
     }
+}
+
+@BindingAdapter("app:relatedMovie","app:relatedItemClickListener")
+fun RecyclerView.relatedProducts(
+    products: List<Result>?,
+    itemClickListener: (Result) -> Unit
+) {
+    if (adapter != relatedProductAdapter) {
+        adapter = relatedProductAdapter
+    }
+
+    relatedProductAdapter.itemClickListener = itemClickListener
+
+    if (itemDecorationCount == 0) {
+        addItemDecoration(RelatedProductDecoration())
+    }
+
+    relatedProductAdapter.submitList(products.orEmpty())
 }

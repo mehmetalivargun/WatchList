@@ -6,5 +6,23 @@
     <fragment
         android:id="@+id/movieList"
         android:name="com.mehmetalivargun.watchlist.ui.MovieList"
-        android:label="MovieList" />
+        android:label="MovieList" >
+        <action
+            android:id="@+id/action_movieList_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetails"
+        android:name="com.mehmetalivargun.watchlist.ui.MovieDetails"
+        android:label="MovieDetails">
+        <argument
+            android:name="movieID"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_movieDetails_self"
+            app:destination="@id/movieDetails" />
+    </fragment>
+
+
 </navigation>

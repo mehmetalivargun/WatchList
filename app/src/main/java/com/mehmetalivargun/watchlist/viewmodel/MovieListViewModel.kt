@@ -6,8 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mehmetalivargun.watchlist.data.response.Genre
 import com.mehmetalivargun.watchlist.data.response.GenreMovies
+import com.mehmetalivargun.watchlist.data.response.Result
 import com.mehmetalivargun.watchlist.infra.BaseViewModel
 import com.mehmetalivargun.watchlist.repo.MovieListRepo
+import com.mehmetalivargun.watchlist.ui.MovieDetailsDirections
+import com.mehmetalivargun.watchlist.ui.MovieListDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,6 +26,10 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
     val genreMovies: LiveData<List<GenreMovies>> = _genreMovies
     private var listOfMovies:MutableList<GenreMovies> = ArrayList()
 
+    val itemClickListener: (Result) -> Unit = {
+        val action = MovieListDirections.actionMovieListToMovieDetails(it.id)
+        navigation.navigate(action)
+    }
 
 
     init {

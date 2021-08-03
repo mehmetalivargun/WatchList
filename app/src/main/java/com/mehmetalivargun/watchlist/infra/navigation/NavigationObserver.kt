@@ -1,9 +1,8 @@
-package com.mehmetalivargun.movierecomandation.infra.navigation
+package com.mehmetalivargun.watchlist.infra.navigation
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
-import com.mehmetalivargun.movierecomandation.Navigation
 
 class NavigationObserver {
     fun observe(
@@ -14,7 +13,7 @@ class NavigationObserver {
         navigation.navigateTo.observe(lifecycleOwner) { directions ->
             directions?.let {
                 navController.navigate(it)
-                Log.d("Move","Burda")
+                Log.e("Move","Burda")
                 navigation.onNavigationComplete()
             }
         }

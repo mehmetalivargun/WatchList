@@ -8,18 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import com.mehmetalivargun.watchlist.R
+import com.mehmetalivargun.watchlist.data.response.Result
 import com.mehmetalivargun.watchlist.databinding.FragmentMovieListBinding
 import com.mehmetalivargun.watchlist.infra.BaseFragment
+import com.mehmetalivargun.watchlist.repo.MovieListRepo
 import com.mehmetalivargun.watchlist.viewmodel.MovieListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieList : BaseFragment(R.layout.fragment_movie_list) {
+class MovieList  : BaseFragment(R.layout.fragment_movie_list) {
 
     private var _binding:FragmentMovieListBinding?=null
     private val binding get() =_binding!!
     override val viewModel: MovieListViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +37,7 @@ class MovieList : BaseFragment(R.layout.fragment_movie_list) {
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
             when (it) {
                 true -> {
+
                     Log.e("HereT","true")
 
                     binding.shimmerFrame.visibility=View.VISIBLE

@@ -30,19 +30,13 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="vertical">
-           <include layout="@layout/shimmer_genre_item"/>
             <include layout="@layout/shimmer_genre_item"/>
-       <include layout="@layout/shimmer_genre_item"/>
-       <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-           <include layout="@layout/shimmer_genre_item"/>
-    ></LinearLayout>
+            <include layout="@layout/shimmer_genre_item"/>
+            <include layout="@layout/shimmer_genre_item"/>
+
+           <include layout="@layout/shimmer_genre_item" />
+
+           ></LinearLayout>
 
 
    </com.facebook.shimmer.ShimmerFrameLayout>

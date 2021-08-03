@@ -1,5 +1,6 @@
-package com.mehmetalivargun.movierecomandation
+package com.mehmetalivargun.watchlist.infra.navigation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
@@ -9,6 +10,7 @@ class Navigation {
     val navigateTo: LiveData<NavDirections?> = _navigateTo
 
     fun navigate(directions: NavDirections) {
+        Log.e("Click","Navigate")
         _navigateTo.value = directions
 
     }
