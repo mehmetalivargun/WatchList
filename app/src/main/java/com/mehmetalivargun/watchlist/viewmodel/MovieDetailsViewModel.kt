@@ -1,13 +1,20 @@
 package com.mehmetalivargun.watchlist.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.snackbar.Snackbar
+import com.mehmetalivargun.watchlist.R
+import com.mehmetalivargun.watchlist.data.db.MovieDao
+import com.mehmetalivargun.watchlist.data.db.MovieEntity
 import com.mehmetalivargun.watchlist.data.response.MovieResponse
 import com.mehmetalivargun.watchlist.data.response.Result
 import com.mehmetalivargun.watchlist.infra.BaseViewModel
+import com.mehmetalivargun.watchlist.infra.snackbar.SnackbarAction
+import com.mehmetalivargun.watchlist.infra.snackbar.SnackbarState
 import com.mehmetalivargun.watchlist.repo.MovieDetailsRepo
 import com.mehmetalivargun.watchlist.repo.MovieListRepo
 import com.mehmetalivargun.watchlist.ui.MovieDetailsDirections
@@ -33,6 +40,7 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
     }
     init {
         val yourArgument: Int? = savedStateHandle["movieID"]
+        Log.e("movieID",yourArgument.toString())
         if (yourArgument != -1 &&yourArgument != null) {
             getMovieDetails(yourArgument)
             getSimilarMovies(yourArgument)
@@ -52,6 +60,19 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
                 MovieDetailsRepo.MovieResponseResult.Loading->onLoading()
             }
         }
+    }
+
+
+    fun onAddButtonClick()=viewModelScope.launch {
+        repo.insertTodo(MovieEntity(movie.value!!.id,movie.value!!.title))
+        _snackbarState.value = SnackbarState(
+            errorRes = R.string.added,
+            duration = Snackbar.LENGTH_INDEFINITE,
+            action = null
+
+        )
+
+
     }
 
 
@@ -80,6 +101,8 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
 
     private fun onSuccess(result: MovieResponse) {
         _isLoading.value = false
+        Log.e("movieIDR",result.toString())
+
         _movie.postValue(result)
         genres= movie.value?.genres?.get(0)?.toString()
 
@@ -87,7 +110,11 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
 
     private fun onRelatedSuccess(result:  List<Result>) {
         Log.e("Error","error1")
-        _movies.postValue(result.subList(0,6))
+        Log.e("movieIDL",result.toString())
+        if(result.isNotEmpty()){
+            _movies.postValue(result.subList(0,6))
+        }
+
 
 
     }

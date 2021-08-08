@@ -2,13 +2,16 @@ package com.mehmetalivargun.watchlist.repo
 
 import android.util.Log
 import com.mehmetalivargun.watchlist.data.api.TMDBapi
+import com.mehmetalivargun.watchlist.data.db.MovieDao
+import com.mehmetalivargun.watchlist.data.db.MovieEntity
 import com.mehmetalivargun.watchlist.data.response.MovieResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 import javax.inject.Inject
 
-class MovieDetailsRepo @Inject constructor(private val api: TMDBapi) {
+class MovieDetailsRepo @Inject constructor(private val api: TMDBapi, private val dao: MovieDao) {
+    suspend fun  insertTodo(todo: MovieEntity)=dao.insertMovie(todo)
 
     suspend fun  fetchMovieDetails(id : Int): Flow<Any> = flow {
 

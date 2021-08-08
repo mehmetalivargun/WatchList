@@ -23,6 +23,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/quicksand"
             android:text="@{genreMovies.genre.name}"
             android:textColor="@android:color/white"
             android:textSize="18sp"

@@ -1,22 +1,20 @@
 package com.mehmetalivargun.watchlist.adapters
 
+
+import android.R
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mehmetalivargun.watchlist.R
-
-
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.CornerFamily
 import com.mehmetalivargun.watchlist.data.response.Result
 import com.mehmetalivargun.watchlist.databinding.ItemMovieGenreBinding
 import com.mehmetalivargun.watchlist.infra.navigation.Navigation
-import com.mehmetalivargun.watchlist.ui.MovieDetailsDirections
-import com.mehmetalivargun.watchlist.ui.MovieList
 import com.mehmetalivargun.watchlist.ui.MovieListDirections
 
 
@@ -43,7 +41,13 @@ class MovieAdapter : ListAdapter< Result, MovieHolder>(Companion) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemMovieGenreBinding.inflate(inflater, parent, false)
+        val imageView: ShapeableImageView = binding.imageView
+        val radius=20.0
 
+        binding.imageView.shapeAppearanceModel = imageView.shapeAppearanceModel
+            .toBuilder()
+            .setAllCornerSizes(radius.toFloat())
+            .build();
         return MovieHolder(binding)
     }
 
@@ -51,6 +55,7 @@ class MovieAdapter : ListAdapter< Result, MovieHolder>(Companion) {
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         var navController: NavController? = null
+
 
         holder.apply {
 
