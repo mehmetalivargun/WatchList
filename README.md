@@ -22,7 +22,9 @@ Movie List App For Android
 
 ![application](https://media.giphy.com/media/IGa5sVO3ZuN6IZBDUU/giphy-downsized-large.gif)
 
-
+![Application](https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/1.png)
+![Application](https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/2.png)
+![Application](https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/3.png)
 ## MVVM Design Pattern
 
 WatchList App implements MVVM architecture .
