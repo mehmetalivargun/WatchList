@@ -1,3 +1,4 @@
+
 # WatchList
 Movie List App For Android
 
@@ -19,7 +20,7 @@ Movie List App For Android
 [Room](https://developer.android.com/training/data-storage/room)
 
 
-![Alt Text](https://media.giphy.com/media/IGa5sVO3ZuN6IZBDUU/giphy-downsized-large.gif)
+![application](https://media.giphy.com/media/IGa5sVO3ZuN6IZBDUU/giphy-downsized-large.gif)
 
 
 ## MVVM Design Pattern
