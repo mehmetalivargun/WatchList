@@ -40,7 +40,6 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
     }
     init {
         val yourArgument: Int? = savedStateHandle["movieID"]
-        Log.e("movieID",yourArgument.toString())
         if (yourArgument != -1 &&yourArgument != null) {
             getMovieDetails(yourArgument)
             getSimilarMovies(yourArgument)
@@ -67,7 +66,7 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
         repo.insertTodo(MovieEntity(movie.value!!.id,movie.value!!.title))
         _snackbarState.value = SnackbarState(
             errorRes = R.string.added,
-            duration = Snackbar.LENGTH_INDEFINITE,
+            duration = Snackbar.LENGTH_SHORT,
             action = null
 
         )
@@ -84,7 +83,6 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
                 MovieListRepo.MovieListResult.Failure->onRelatedLoading()
             }
         }
-        Log.e("Error","error")
     }
 
 
@@ -95,27 +93,20 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieDetailsRe
     }
     private fun onRelatedLoading() {
         _isLoading.value = true
-        Log.e("Error","error2")
 
     }
 
     private fun onSuccess(result: MovieResponse) {
         _isLoading.value = false
-        Log.e("movieIDR",result.toString())
-
         _movie.postValue(result)
         genres= movie.value?.genres?.get(0)?.toString()
 
     }
 
     private fun onRelatedSuccess(result:  List<Result>) {
-        Log.e("Error","error1")
-        Log.e("movieIDL",result.toString())
         if(result.isNotEmpty()){
             _movies.postValue(result.subList(0,6))
         }
-
-
 
     }
 

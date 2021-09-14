@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
+import com.mehmetalivargun.watchlist.data.db.MovieDao
 import com.mehmetalivargun.watchlist.data.response.Result
 import com.mehmetalivargun.watchlist.databinding.ItemMovieGenreBinding
 import com.mehmetalivargun.watchlist.infra.navigation.Navigation
 import com.mehmetalivargun.watchlist.ui.MovieListDirections
+import javax.inject.Inject
 
 
-class MovieHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+class MovieHolder (val binding: ViewDataBinding ) : RecyclerView.ViewHolder(binding.root)
 
 
 
@@ -67,8 +69,9 @@ class MovieAdapter : ListAdapter< Result, MovieHolder>(Companion) {
 
                     navController = androidx.navigation.Navigation.findNavController(itemView)
                     val action = MovieListDirections.actionMovieListToMovieDetails(getItem(position).id)
-                    Log.e("Action",getItem(position).toString())
-                    navController!!.navigate(action)
+                    Log.e("Navigate",getItem(position).toString())
+
+                    navController?.navigate(action)
 
                 }
 

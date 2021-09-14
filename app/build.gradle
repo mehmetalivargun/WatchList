@@ -41,6 +41,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.iammert:ReadableBottomBar:0.2'
+    implementation 'com.github.trendyol:medusa:0.9.2'
+    implementation 'com.github.iammert:ScalingLayout:1.2.1'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     // Glide (Image Loader)
     implementation 'com.github.bumptech.glide:glide:4.12.0'

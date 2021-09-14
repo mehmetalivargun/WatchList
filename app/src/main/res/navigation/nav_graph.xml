@@ -9,7 +9,11 @@
         android:label="MovieList" >
         <action
             android:id="@+id/action_movieList_to_movieDetails"
-            app:destination="@id/movieDetails" />
+            app:destination="@id/movieDetails"
+            app:popUpTo="@id/movieList"/>
+        <action
+            android:id="@+id/action_movieList_to_watchList"
+            app:destination="@id/watchList" />
     </fragment>
     <fragment
         android:id="@+id/movieDetails"
@@ -21,7 +25,20 @@
             android:defaultValue="-1" />
         <action
             android:id="@+id/action_movieDetails_self"
-            app:destination="@id/movieDetails" />
+            app:destination="@id/movieDetails"
+            app:popUpTo="@id/movieList"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/watchList"
+        android:name="com.mehmetalivargun.watchlist.ui.WatchList"
+        android:label="WatchList" >
+        <action
+            android:id="@+id/action_watchList_self"
+            app:destination="@id/watchList" />
+        <action
+            android:id="@+id/action_watchList_to_movieList"
+            app:destination="@id/movieList" />
     </fragment>
 
 

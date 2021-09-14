@@ -30,19 +30,16 @@ class MovieList  : BaseFragment(R.layout.fragment_movie_list) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding= FragmentMovieListBinding.inflate(inflater,container,false)
+        _binding= FragmentMovieListBinding.inflate(inflater,container,false )
         binding.viewModel=viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.shimmerFrame.startShimmer()
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+
             when (it) {
                 true -> {
-
-                    Log.e("HereT","true")
-
                     binding.shimmerFrame.visibility=View.VISIBLE
                     binding.genreRV.visibility=View.GONE
-
                 }
                 else -> {
                     binding.shimmerFrame.stopShimmer()
@@ -51,8 +48,9 @@ class MovieList  : BaseFragment(R.layout.fragment_movie_list) {
                 }
             }
         })
-        // Inflate the layout for this fragment
         return binding.root
     }
+
+
 
 }

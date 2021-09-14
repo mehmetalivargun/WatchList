@@ -12,7 +12,7 @@ interface MovieDao {
     suspend fun getById(id: Int): MovieEntity?
 
     @Delete
-    suspend fun deleteMovie(movie: MovieEntity)
+     suspend fun deleteMovie(movie: MovieEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovie(movie: MovieEntity)

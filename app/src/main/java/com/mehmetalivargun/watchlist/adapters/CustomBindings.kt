@@ -6,7 +6,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
+import com.mehmetalivargun.watchlist.data.db.MovieDao
 import com.mehmetalivargun.watchlist.data.response.GenreMovies
+import com.mehmetalivargun.watchlist.data.response.MovieResponse
 import com.mehmetalivargun.watchlist.data.response.Result
 
 val genreAdapter=GenreRVAdapter()
@@ -33,7 +35,17 @@ fun RecyclerView.setMovies(books: List<Result>?) {
     }
 }
 
+/*
+@BindingAdapter(value = ["setList"])
+fun RecyclerView.setList(books: List<MovieResponse>?) {
+    if (books != null) {
+        val bookAdapter = ListMovieAdapter()
+        bookAdapter.submitList(books)
 
+        adapter = bookAdapter
+    }
+}
+*/
     @BindingAdapter("app:imageUrl")
 fun ImageView.imageUrl(imageUrl: String?) {
     val image= "https://image.tmdb.org/t/p/w500/$imageUrl"

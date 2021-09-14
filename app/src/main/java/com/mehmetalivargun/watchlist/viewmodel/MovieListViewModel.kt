@@ -40,7 +40,7 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
 
 
     private fun getAllGenres()=viewModelScope.launch {
-        Log.e("Error","here")
+
         repo.fetchAllGenres().collect {
             when(it){
                 is MovieListRepo.GenreListResult.Success->onGenreSucces(it.results)
@@ -53,7 +53,6 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
     }
 
     private fun onFail() {
-        Log.e("Error","Fail")
         _isLoading.value = true
 
     }
@@ -61,24 +60,20 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
 
 
     private fun onLoading() {
-        Log.e("Error","Loading")
         _isLoading.value = true
 
     }
 
     private fun onUn() {
-        Log.e("Error","Un")
         _isLoading.value = true
 
     }
 
     private  fun onGenreSucces(results: List<Genre>)=viewModelScope.launch {
         _genres.postValue(results)
-        Log.e("GenreListt",results.size.toString())
         results.forEach { genre ->
 
             repo.fetchMoviesByGenre(genre.id).collect {
-                Log.e("GenreListt","Here1")
                 when(it){
                     is MovieListRepo.MovieListResult.Success-> {
                         listOfMovies.add(GenreMovies(genre,it.results))
@@ -90,7 +85,6 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
 
         }
 
-        Log.e("GenreListt",listOfMovies.size.toString())
         _genreMovies.postValue(listOfMovies)
 
         _isLoading.value = false

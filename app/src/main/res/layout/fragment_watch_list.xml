@@ -8,20 +8,49 @@
 
         <variable
             name="viewModel"
-            type="com.mehmetalivargun.watchlist.viewmodel.MovieListViewModel" />
+            type="com.mehmetalivargun.watchlist.viewmodel.WatchListViewModel" />
     </data>
 
-
-    <FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.WatchList">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="@color/themeMain"
+    >
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/shimmer_item_watch_list"/>
+            <include layout="@layout/shimmer_item_watch_list"/>
+            <include layout="@layout/shimmer_item_watch_list"/>
+            <include layout="@layout/shimmer_item_watch_list" />
+            <include layout="@layout/shimmer_item_watch_list" />
+            <include layout="@layout/shimmer_item_watch_list" />
 
-</FrameLayout>
+            ></LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
     </layout>

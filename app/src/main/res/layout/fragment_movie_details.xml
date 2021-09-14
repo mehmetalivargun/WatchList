@@ -36,10 +36,10 @@
                 <com.google.android.material.imageview.ShapeableImageView
 
                     android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="771dp"
+                    android:layout_height="622dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
+                    android:scaleType="fitStart"
                     app:imageUrl="@{viewModel.movie.poster_path}"
                     tools:layout_editor_absoluteY="-2dp"
                     tools:src="@drawable/mediumcover">
@@ -68,7 +68,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#171717">
+                android:background="#06151B">
 
                 <TextView
                     android:id="@+id/movieTitle"
@@ -117,7 +117,7 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#171717"
+                    android:background="@color/themeMain"
                     android:orientation="vertical"
                     app:relatedMovie="@{viewModel.movies}"
                     app:relatedItemClickListener="@{viewModel.itemClickListener}"
@@ -139,10 +139,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
-            android:background="#171717"
+            android:background="@color/themeMain"
             android:baselineAlignBottom="true"
+            app:backgroundTint="#00D474"
+            app:tint="@color/white"
             android:clickable="true"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_baseline_tv_24"
             android:onClick="@{() -> viewModel.onAddButtonClick()}"
             app:fabSize="normal"
             app:layout_anchor="@id/appBarLayout"

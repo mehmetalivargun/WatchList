@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#838b83</color>
-    <color name="themeMain">#171717</color>
+    <color name="themeMain">#06151B</color>
+    <color name="themeSecond">#071C24</color>
+    <color name="watchListItem">#353637</color>
 </resources>

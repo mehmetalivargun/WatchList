@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        drawable="@drawable/ic_home_black_24dp"
+        text="Movie List" />
+
+    <tab
+        drawable="@drawable/ic_home_black_24dp"
+        text="Watch List" />
+
+    <tab
+        drawable="@drawable/ic_home_black_24dp"
+        text="About" />
+
+</tabs>
