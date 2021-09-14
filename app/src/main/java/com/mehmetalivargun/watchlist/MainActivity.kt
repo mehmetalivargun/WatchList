@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), Navigator.NavigatorListener {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
 
-         
+
             }
             true
         }
