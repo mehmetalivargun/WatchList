@@ -28,4 +28,4 @@ WatchList App implements MVVM architecture .
 ![](https://miro.medium.com/max/4842/1*vRrq4vpE78CeYEk_7rxAdg.png)
 
 
-![Application](https://giphy.com/embed/IGa5sVO3ZuN6IZBDUU)
+![Application](https://media.giphy.com/media/IGa5sVO3ZuN6IZBDUU/giphy-downsized-large.gif?cid=790b761111fc11b48572e5db69e9dcc2f17d4bd49a1b8269&rid=giphy-downsized-large.gif&ct=g)
