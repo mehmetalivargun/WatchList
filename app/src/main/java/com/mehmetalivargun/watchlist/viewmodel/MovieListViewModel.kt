@@ -12,6 +12,7 @@ import com.mehmetalivargun.watchlist.repo.MovieListRepo
 import com.mehmetalivargun.watchlist.ui.MovieDetailsDirections
 import com.mehmetalivargun.watchlist.ui.MovieListDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,15 +31,9 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
         val action = MovieListDirections.actionMovieListToMovieDetails(it.id)
         navigation.navigate(action)
     }
-
-
     init {
         getAllGenres()
     }
-
-
-
-
     private fun getAllGenres()=viewModelScope.launch {
 
         repo.fetchAllGenres().collect {
@@ -56,37 +51,32 @@ class MovieListViewModel @Inject constructor(private val repo: MovieListRepo): B
         _isLoading.value = true
 
     }
-
-
-
     private fun onLoading() {
         _isLoading.value = true
 
     }
-
     private fun onUn() {
         _isLoading.value = true
 
     }
-
-    private  fun onGenreSucces(results: List<Genre>)=viewModelScope.launch {
+    private  fun onGenreSucces(results: List<Genre>) =viewModelScope.launch{
         _genres.postValue(results)
-        results.forEach { genre ->
-
-            repo.fetchMoviesByGenre(genre.id).collect {
-                when(it){
-                    is MovieListRepo.MovieListResult.Success-> {
-                        listOfMovies.add(GenreMovies(genre,it.results))
-
+        results.map {genre->
+            viewModelScope.async {
+                repo.fetchMoviesByGenre(genre.id).collect {
+                    when(it){
+                        is MovieListRepo.MovieListResult.Success-> {
+                            listOfMovies.add(GenreMovies(genre,it.results))
+                        }
+                        MovieListRepo.MovieListResult.Loading->onLoading()
                     }
-                    MovieListRepo.MovieListResult.Loading->onLoading()
                 }
+                // Logic
             }
-
+        }.forEach {
+            it.await()
         }
-
         _genreMovies.postValue(listOfMovies)
-
         _isLoading.value = false
     }
 }

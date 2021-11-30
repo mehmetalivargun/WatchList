@@ -17,8 +17,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
-class WatchListViewModel @Inject constructor(private val repo: WatchListRepo): BaseViewModel() {
+class WatchListViewModel @Inject constructor(private val repo: WatchListRepo) : BaseViewModel() {
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> = _isLoading
     private var listOfMovies: MutableList<MovieResponse> = ArrayList()
@@ -29,39 +30,38 @@ class WatchListViewModel @Inject constructor(private val repo: WatchListRepo): B
         getMyList()
     }
 
-    fun deleteTodo(todo:MovieResponse)=viewModelScope.launch {
+    fun deleteTodo(todo: MovieResponse) = viewModelScope.launch {
 
         listOfMovies.remove(todo)
-        repo.delete(MovieEntity(todo.id,todo.title))
+        repo.delete(MovieEntity(todo.id, todo.title))
 
     }
 
-     fun getMyList() = viewModelScope.launch {
+    private fun getMyList() = viewModelScope.launch {
         repo.getList().forEach { movie ->
             repo.fetchMovieDetails(movie.id).collect {
                 when (it) {
                     is MovieDetailsRepo.MovieResponseResult.Success -> {
                         onSucces(it.result)
-
                     }
-                    MovieDetailsRepo.MovieResponseResult.Loading-> onLoading()
-
-
+                    MovieDetailsRepo.MovieResponseResult.Loading -> onLoading()
+                    else->onFail()
                 }
-
             }
-
         }
         _movies.postValue(listOfMovies)
-
     }
 
-    private fun onLoading(){
-        _isLoading.value =true
-
+    private fun onFail(){
+        _isLoading.value=false
     }
-    private fun onSucces(result:MovieResponse){
-        _isLoading.value =false
+
+    private fun onLoading() {
+        _isLoading.value = true
+    }
+
+    private fun onSucces(result: MovieResponse) {
+        _isLoading.value = false
         listOfMovies.add(result)
     }
 }

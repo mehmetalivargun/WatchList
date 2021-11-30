@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity(), Navigator.NavigatorListener {
 
 
 
-
-
     lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
