@@ -22,6 +22,9 @@ Movie List App For Android
 
 ![application](https://media.giphy.com/media/IGa5sVO3ZuN6IZBDUU/giphy-downsized-large.gif)
 
+<img src="https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/1.png" width="300" height="700">
+<img src="https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/2.png" width="300" height="700">
+<img src="https://raw.githubusercontent.com/mehmetalivargun/WatchList/master/images/3.png" width="300" height="700">
 
 ## MVVM Design Pattern
 
